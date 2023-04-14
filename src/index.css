@@ -24,7 +24,7 @@ footer {
   background-color: white;
 }
 
-input, textarea {
+input, textarea, select {
   width: 50%;
   padding: 5px;
   border-radius: 6px;
@@ -38,12 +38,30 @@ input, textarea {
   width: 50%;
 }
 
+.width-100 {
+  width: 100%;
+}
+
 .no-border {
   border: none;
 }
 
 .minimalist-button {
-  background-color: transparent;
+  background-color: #0d669e;
+  border: 1px solid rgb(68, 68, 68);
+  border-radius: 6px;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.minimalist-button:hover {
+  background-color: #64bbf2;
+  color: black;
+}
+
+.delete-button {
+  background-color: #d11a2a;
   border: 1px solid rgb(68, 68, 68);
   border-radius: 6px;
   color: black;
@@ -51,32 +69,19 @@ input, textarea {
   cursor: pointer;
 }
 
-.minimalist-button:hover {
-  background-color: rgba(0, 38, 255, 0.178);
-}
-
-.delete-button {
-  width: 10px;
-  background-color: transparent;
-  border: none;
-  color: black;
-  font-size: 16px;
-  cursor: pointer;
-}
-
 .submit-button {
+  background-color: #0d669e;
   padding: 2px 10px;
-  background-color: transparent;
   border: 1px solid black;
   border-radius: 6px;
-  color: black;
+  color: white;
   font-size: 16px;
   cursor: pointer;
 }
 
 .submit-button:hover {
-  background-color: seagreen;
-  color: white;
+  background-color: #64bbf2;
+  color: black;
 }
 
 .odd-row {

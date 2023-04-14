@@ -7,7 +7,6 @@ import { useNavigate } from 'react-router-dom';
 const FormPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [isShowingAlert, setIsShowingAlert] = useState(false);
   const [data, setData] = useState({
     name: '',
     nik: '',
@@ -57,7 +56,6 @@ const FormPage = () => {
   };
 
   const handleSubmit = (data) => {
-    console.log(data);
     const newId = uuidv4();
     const newData = {
       id: newId, name: data.name, nik: data.nik, address: data.address ?? null, job: data.job ?? null, dob: data.dob ?? null, phone: data.phone ?? null, secondPhone: data.secondPhone ?? null
@@ -68,6 +66,28 @@ const FormPage = () => {
 
   const handleChange = (e, name)=>{
     setData((prev)=>({...prev, [name]:e.target.value}));
+  }
+
+  const handleUpdateFamily = (e, index, key) => {
+    setData((prev) => {
+      const newFamily = [...prev.family];
+      newFamily[index] = { ...newFamily[index], [key]: e.target.value };
+      return { ...prev, family: newFamily };
+    });
+  }
+
+  const handleAddFamily = () => {
+    setData((prev) => {
+      const newFamily = [...prev.family, { name: '', dob: null, relationship: 'none' }];
+      return { ...prev, family: newFamily };
+    });
+  }
+
+  const handleRemoveFamily = (index) => {
+    setData((prev) => {
+      const newFamily = prev.family.filter((family, familyIndex) => familyIndex !== index);
+      return { ...prev, family: newFamily };
+    });
   }
 
   return (
@@ -118,72 +138,68 @@ const FormPage = () => {
               </td>
             </tr>
             {secondaryField}
-            <tr>
-              <td colSpan={2}>
-                {/* <table>
-                  <thead>
-                    <tr>
-                      <th>Name</th>
-                      <th>Date of Birth</th>
-                      <th>Relationship Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {data.family.map((person, idx) => (
-                      idx == 0 ?
-                      <tr key=`fam-{idx}`>
-                        <td>
-                          <input type="text" value={person.name} onChange={(e) => handleChangeFamily(e, idx, 'name')} placeholder='Please fill with your Fullname...' required/>
-                        </td>
-                        <td>
-                          <input type="date" value={person.dob} onChange={(e) => handleChangeFamily(e, idx, 'dob')} placeholder='DD MMMM YYYY' required/>
-                        </td>
-                        <td>
-                          <select value={person.relationship} onChange={(e) => handleChangeFamily(e, idx, 'relationship')}>
-                            <option value="undefined">--Please choose an option--</option>
-                            <option value="brother">Option 1</option>
-                            <option value="sister">Option 2</option>
-                            <option value="parent">Option 3</option>
-                            <option value="child">Option</option>
-                          </select>
-                        </td>
-                      </tr>
-                      :
-                      <tr key=`fam-{idx}`>
-                        <td>
-                          <input type="text" value={person.name} onChange={(e) => handleChangeFamily(e, idx, 'name')} placeholder='Please fill with your Fullname...'/>
-                        </td>
-                        <td>
-                          <input type="date" value={person.dob} onChange={(e) => handleChangeFamily(e, idx, 'dob')} placeholder='DD MMMM YYYY'/>
-                        </td>
-                        <td>
-                          <select value={person.relationship} onChange={(e) => handleChangeFamily(e, idx, 'relationship')}>
-                            <option value="undefined">--Please choose an option--</option>
-                            <option value="brother">Option 1</option>
-                            <option value="sister">Option 2</option>
-                            <option value="parent">Option 3</option>
-                            <option value="child">Option</option>
-                          </select>
-                        </td>
-                      </tr>
-                    ))}
-                    <tr>
-                      <td>
-                        <button className='minimalist-button' onClick={() => handleAddFamily(false)}>Add Family Member</button>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table> */}
-              </td>
-            </tr>
-            <tr><td colSpan={2}></td></tr>
-            <tr>
-              <td className='width-20'></td>
-              <td className='width-50' style={{display: 'flex', justifyContent: 'flex-end'}}>
-                <button className='submit-button' type="submit">Submit</button>
-              </td>
-            </tr>
         </table>
+        <br/><br/>
+        <table style={{width: '50%'}}>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Date of Birth</th>
+              <th>Relationship Status</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {data.family.map((person, idx) => (
+              idx === 0 ?
+              <tr key={'fam-'+idx}>
+                <td>
+                  <input className='width-100' type="text" value={person.name} onChange={(e) => handleUpdateFamily(e, idx, 'name')} placeholder='Please fill with your Fullname...' required/>
+                </td>
+                <td>
+                  <input className='width-100' type="date" value={person.dob} onChange={(e) => handleUpdateFamily(e, idx, 'dob')} placeholder='DD MMMM YYYY' required/>
+                </td>
+                <td>
+                  <select className='width-100' value={person.relationship} onChange={(e) => handleUpdateFamily(e, idx, 'relationship')}>
+                    <option value="undefined">--Please choose an option--</option>
+                    <option value="brother">Brother</option>
+                    <option value="sister">Sister</option>
+                    <option value="parent">Parent</option>
+                    <option value="child">Child</option>
+                  </select>
+                </td>
+              </tr>
+              :
+              <tr key={'fam-'+idx}>
+                <td>
+                  <input className='width-100' type="text" value={person.name} onChange={(e) => handleUpdateFamily(e, idx, 'name')} placeholder='Please fill with your Fullname...'/>
+                </td>
+                <td>
+                  <input className='width-100' type="date" value={person.dob} onChange={(e) => handleUpdateFamily(e, idx, 'dob')} placeholder='DD MMMM YYYY'/>
+                </td>
+                <td>
+                  <select className='width-100' value={person.relationship} onChange={(e) => handleUpdateFamily(e, idx, 'relationship')}>
+                    <option value="undefined">--Please choose an option--</option>
+                    <option value="brother">Brother</option>
+                    <option value="sister">Sister</option>
+                    <option value="parent">Parent</option>
+                    <option value="child">Child</option>
+                  </select>
+                </td>
+                <td>
+                  <button className='delete-button' onClick={() => handleRemoveFamily(idx)}><IoTrashOutline/></button>
+                </td>
+              </tr>
+            ))}
+            <tr>
+              <td>
+                <button className='minimalist-button' onClick={() => handleAddFamily()}>Add Family Member</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <br/><br/>
+        <button className='submit-button' type="submit">Submit</button>
       </form>
     </div>
   );
