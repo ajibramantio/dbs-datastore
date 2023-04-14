@@ -108,9 +108,9 @@ const FormPage = () => {
               </td>
             </tr>
             <tr>
-              <td className='width-20'>E-KTP Number</td>
+              <td className='width-20'>eKTP</td>
               <td className='width-50'>
-              <input type="text" value={data.nik} onChange={(e) =>  handleChange(e,'nik')} placeholder='Please fill with your E-KTP number...' required/>
+              <input type="number" value={data.nik} onChange={(e) =>  handleChange(e,'nik')} placeholder='Please fill with your E-KTP number...' required/>
               </td>
             </tr>
             <tr>
