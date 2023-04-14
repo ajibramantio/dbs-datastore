@@ -24,26 +24,26 @@ const ListPage = () => {
       <tbody>
         {data.length > 0 ?
           data.map((item, idx) => (
-            idx !== data.length-1 ?
+            idx%2 == 1 ?
             <tr>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{idx+1}</td>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{item.name}</td>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{item.nik}</td>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{item.address ?? "-"}</td>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{item.job ?? "-"}</td>
-              <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', padding: '5px'}}>{item.dob}</td>
+              <td className='odd-row'>{idx+1}</td>
+              <td className='odd-row'>{item.name}</td>
+              <td className='odd-row'>{item.nik}</td>
+              <td className='odd-row'>{item.address ?? "-"}</td>
+              <td className='odd-row'>{item.job ?? "-"}</td>
+              <td className='odd-row'>{item.dob}</td>
               <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', borderRight: 'none', padding: '5px'}}>{item.phone}{item.secondPhone ? `, `+item.secondPhone : "" }</td>
               {/* <td style={{textAlign: 'center', border: '0.5px solid black', borderTop: 'none', borderLeft: 'none', borderRight: 'none', padding: '5px'}}><button className='customize-button' onClick={() => handleShowFamily(item.family)}>Show ({item.family.length ? item.family.length : 0})</button></td> */}
             </tr>
             :
             <tr>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{idx+1}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.name}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.nik}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.address ?? "-"}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.job ?? "-"}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.dob}</td>
-              <td style={{textAlign: 'center', borderRight: '0.5px solid black', padding: '5px'}}>{item.phone}{item.secondPhone ? `, `+item.secondPhone : "" }</td>
+              <td className='even-row'>{idx+1}</td>
+              <td className='even-row'>{item.name}</td>
+              <td className='even-row'>{item.nik}</td>
+              <td className='even-row'>{item.address ?? "-"}</td>
+              <td className='even-row'>{item.job ?? "-"}</td>
+              <td className='even-row'>{item.dob}</td>
+              <td className='even-row'>{item.phone}{item.secondPhone ? `, `+item.secondPhone : "" }</td>
               {/* <td style={{textAlign: 'center', padding: '5px'}}><button className='customize-button' onClick={() => handleShowFamily(item.family)}>Show ({item.family.length ? item.family.length : 0})</button></td> */}
             </tr>
           )) :

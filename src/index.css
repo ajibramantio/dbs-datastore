@@ -23,7 +23,8 @@ footer {
   width: 90vw;
   background-color: white;
 }
-input {
+
+input, textarea {
   width: 50%;
   padding: 5px;
   border-radius: 6px;
@@ -64,6 +65,7 @@ input {
 }
 
 .submit-button {
+  padding: 2px 10px;
   background-color: transparent;
   border: 1px solid black;
   border-radius: 6px;
@@ -74,4 +76,25 @@ input {
 
 .submit-button:hover {
   background-color: seagreen;
+  color: white;
+}
+
+.odd-row {
+  text-align: center;
+  border: 0.5px solid black;
+  border-top: none;
+  border-left: none;
+  padding: 5px;
+}
+
+.even-row {
+  background-color: rgba(128, 128, 128, 0.384);
+  text-align: center;
+  border-right: 0.5px solid black;
+  padding: 5px;
+}
+
+.navbar-menu:hover {
+  cursor: pointer;
+  color: #FF3333;
 }
