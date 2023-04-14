@@ -58,7 +58,7 @@ const FormPage = () => {
   const handleSubmit = (data) => {
     const newId = uuidv4();
     const newData = {
-      id: newId, name: data.name, nik: data.nik, address: data.address ?? null, job: data.job ?? null, dob: data.dob ?? null, phone: data.phone ?? null, secondPhone: data.secondPhone ?? null
+      id: newId, name: data.name, nik: data.nik, address: data.address ?? null, job: data.job ?? null, dob: data.dob ?? null, phone: data.phone ?? null, secondPhone: data.secondPhone ?? null, family: data.family ?? null
     };
     dispatch({type: 'newData', payload: newData});
     navigate('/');
@@ -74,6 +74,8 @@ const FormPage = () => {
       newFamily[index] = { ...newFamily[index], [key]: e.target.value };
       return { ...prev, family: newFamily };
     });
+    console.log('Data: ', data);
+    console.log('Family: ', data.family);
   }
 
   const handleAddFamily = () => {
@@ -81,6 +83,8 @@ const FormPage = () => {
       const newFamily = [...prev.family, { name: '', dob: null, relationship: 'none' }];
       return { ...prev, family: newFamily };
     });
+    console.log('Data: ', data);
+    console.log('Family: ', data.family);
   }
 
   const handleRemoveFamily = (index) => {
@@ -88,6 +92,8 @@ const FormPage = () => {
       const newFamily = prev.family.filter((family, familyIndex) => familyIndex !== index);
       return { ...prev, family: newFamily };
     });
+    console.log('Data: ', data);
+    console.log('Family: ', data.family);
   }
 
   return (

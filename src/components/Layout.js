@@ -5,7 +5,7 @@ const Layout = ({children})=>{
       const router = useNavigate();
     return(
         <div>
-             <Navbar expand="lg" importantx style={{width: '100%', background: '#FFFFFF'}}>
+          <Navbar expand="lg" importantx style={{width: '100%', background: '#FFFFFF'}}>
           <Navbar.Brand href="/">
           <img
               src="/logo512.png"
