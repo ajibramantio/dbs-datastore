@@ -37,7 +37,7 @@ const FormPage = () => {
             Secondary Phone Number:
           </td>
           <td className='width-50'>
-            <input type="number" value={data.secondPhone} onChange={(e) => setData({ secondPhone: e.target.value})} placeholder='081XXXXXXXXX' /><button className='delete-button' onClick={() => handleSecondaryNumber(true)}><IoTrashOutline/></button>
+            <input type="number" value={data.secondPhone} onChange={(e) =>  handleChange(e,'secondPhone')} placeholder='081XXXXXXXXX' /><button className='delete-button' onClick={() => handleSecondaryNumber(true)}><IoTrashOutline/></button>
           </td>
         </tr>
       )
@@ -61,6 +61,7 @@ const FormPage = () => {
   }
 
   const handleSubmit = (data) => {
+    console.log(data);
     const newId = uuidv4();
     const newData = {
       id: newId, name: data.name, nik: data.nik, address: data.address ?? null, job: data.job ?? null, dob: data.dob ?? null, phone: data.phone ?? null, secondPhone: data.secondPhone ?? null
@@ -68,6 +69,10 @@ const FormPage = () => {
     dispatch({type: 'newData', payload: newData});
     navigate('/');
   };
+
+  const handleChange = (e, name)=>{
+    setData((prev)=>({...prev, [name]:e.target.value}));
+  }
 
   return (
     <div>
@@ -81,37 +86,37 @@ const FormPage = () => {
               <tr>
                 <td className='width-20'>Fullname</td>
                 <td className='width-50'>
-                  <input type="text" value={data.name} onChange={(e) => setData({ name: e.target.value})} placeholder='Please fill with your Fullname...' required/>
+                  <input type="text" value={data.name} onChange={(e) => handleChange(e,'name')} placeholder='Please fill with your Fullname...' required/>
                 </td>
               </tr>
               <tr>
                 <td className='width-20'>E-KTP Number</td>
                 <td className='width-50'>
-                <input type="text" value={data.nik} onChange={(e) => setData({ nik: e.target.value})} placeholder='Please fill with your E-KTP number...' required/>
+                <input type="text" value={data.nik} onChange={(e) =>  handleChange(e,'nik')} placeholder='Please fill with your E-KTP number...' required/>
                 </td>
               </tr>
               <tr>
                 <td className='width-20'>Address</td>
                 <td className='width-50'>
-                <input type="textarea" value={data.address} onChange={(e) => setData({ address: e.target.value})} placeholder='Please fill with your home address...' />
+                <input type="textarea" value={data.address} onChange={(e) =>  handleChange(e,'address')} placeholder='Please fill with your home address...' />
                 </td>
               </tr>
               <tr>
                 <td className='width-20'>Job Title</td>
                 <td className='width-50'>
-                <input type="text" value={data.job} onChange={(e) => setData({ job: e.target.value})} placeholder='Frontend Engineer, Backend Engineer, etc' />
+                <input type="text" value={data.job} onChange={(e) =>  handleChange(e,'job')} placeholder='Frontend Engineer, Backend Engineer, etc' />
                 </td>
               </tr>
               <tr>
                 <td className='width-20'>Date of Birth</td>
                 <td className='width-50'>
-                  <input type="date" value={data.dob} onChange={(e) => setData({ dob: e.target.value})} placeholder='DD MMMM YYYY' />
+                  <input type="date" value={data.dob} onChange={(e) => handleChange(e,'dob')} placeholder='DD MMMM YYYY' />
                 </td>
               </tr>
               <tr>
                 <td className='width-20'>Phonenumber</td>
                 <td className='width-50'>
-                <input type="number" value={data.phone} onChange={(e) => setData({ phone: e.target.value})} placeholder='081XXXXXXXXX' />
+                <input type="number" value={data.phone} onChange={(e) =>  handleChange(e,'phone')} placeholder='081XXXXXXXXX' />
                 </td>
               </tr>
               {secondaryField}
