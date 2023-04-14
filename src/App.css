@@ -36,3 +36,34 @@
     transform: rotate(360deg);
   }
 }
+
+.alert-show {
+  opacity: 1;
+}
+
+.alert-hidden {
+  opacity: 0;
+  transition: all 250ms linear 2s;
+}
+
+table {
+  border-collapse: initial;
+  border-spacing: 0;
+  border: 0.5px solid black;
+  border-radius: 8px;
+  width: 100%;
+}
+
+thead {
+  text-align: center;
+  align-items: center;
+  justify-items: center;
+}
+
+thead, th{
+  background-color: #ff33336c;
+  border: 0.5px solid black;
+  border-top: none;
+  border-left: none;
+  padding: 5px;
+}
